@@ -1,0 +1,469 @@
+/* =========================================================
+   LUXURY ANALOG & DIGITAL WATCH (STABLE RESPONSIVE LAYOUT)
+========================================================= */
+
+:root {
+    /* Auto-scale size for small mobile screens & desktop */
+    --watch-size: clamp(300px, 82vw, 380px);
+
+    --bg-gradient: radial-gradient(circle at center, #1a202c 0%, #080b11 100%);
+    
+    /* Default Theme: Rose Gold & Obsidian */
+    --case-metal: conic-gradient(from 180deg, #b38728, #fbf5b7, #bf953f, #aa771c, #fcf6ba, #b38728);
+    --bezel-accent: #231b12;
+    --dial-bg: radial-gradient(circle, #1a1e29 0%, #090a0f 85%);
+    --gold-primary: #dfb76c;
+    --gold-light: #fff3d1;
+    --gold-dark: #8c6827;
+    --lume-glow: #00ffaa;
+    --lcd-bg: #051412;
+    --lcd-text: #00f0ff;
+    --lcd-glow: rgba(0, 240, 255, 0.4);
+    --strap-color: #120d09;
+}
+
+/* Theme 2: Steel & Cyan */
+.theme-steel {
+    --case-metal: conic-gradient(from 180deg, #8a9ba8, #ffffff, #5a6b78, #d0e0ed, #7a8b98, #8a9ba8);
+    --bezel-accent: #0f1620;
+    --dial-bg: radial-gradient(circle, #121924 0%, #040609 85%);
+    --gold-primary: #a8c0d6;
+    --gold-light: #ffffff;
+    --gold-dark: #4a5c6e;
+    --lume-glow: #00e5ff;
+    --lcd-bg: #03121a;
+    --lcd-text: #00e5ff;
+    --lcd-glow: rgba(0, 229, 255, 0.5);
+    --strap-color: #0a0f14;
+}
+
+/* Theme 3: Emerald & Gold */
+.theme-emerald {
+    --case-metal: conic-gradient(from 180deg, #cca625, #fff5aa, #9e7d11, #ffd966, #cca625);
+    --bezel-accent: #031f15;
+    --dial-bg: radial-gradient(circle, #082d21 0%, #010d09 85%);
+    --gold-primary: #e6c875;
+    --gold-light: #fffadb;
+    --gold-dark: #806518;
+    --lume-glow: #50ffb1;
+    --lcd-bg: #011710;
+    --lcd-text: #50ffb1;
+    --lcd-glow: rgba(80, 255, 177, 0.5);
+    --strap-color: #03120c;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-gradient);
+    font-family: 'Montserrat', sans-serif;
+    padding: 20px 10px;
+}
+
+.watch-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* LEATHER STRAPS */
+.strap {
+    position: absolute;
+    width: calc(var(--watch-size) * 0.45);
+    height: 120px;
+    background: var(--strap-color);
+    background-image: repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 2px, transparent 2px, transparent 6px);
+    border-radius: 8px;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.9);
+    z-index: 1;
+}
+
+.strap-top { top: -70px; }
+.strap-bottom { bottom: 20px; }
+
+/* MAIN WATCH CASE */
+.watch-case {
+    position: relative;
+    width: var(--watch-size);
+    height: var(--watch-size);
+    border-radius: 50%;
+    background: var(--case-metal);
+    padding: calc(var(--watch-size) * 0.04);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.8), inset 0 2px 4px rgba(255,255,255,0.8), inset 0 -4px 10px rgba(0,0,0,0.8);
+    z-index: 2;
+    transition: background 0.4s ease;
+}
+
+/* PUSHERS & CROWN */
+.pusher, .crown {
+    position: absolute;
+    background: var(--case-metal);
+    border: none;
+    cursor: pointer;
+    z-index: -1;
+}
+
+.pusher {
+    right: -3%;
+    width: 6%;
+    height: 10%;
+    border-radius: 3px 6px 6px 3px;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+}
+
+.pusher-top { top: 18%; }
+.pusher-bottom { bottom: 18%; }
+
+.crown {
+    right: -5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8%;
+    height: 14%;
+    border-radius: 4px 8px 8px 4px;
+    box-shadow: 3px 0 8px rgba(0,0,0,0.7);
+    background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.4) 0px, rgba(0,0,0,0.4) 2px, transparent 2px, transparent 5px);
+}
+
+.pusher:active, .crown:active { transform: translateX(-3px); }
+.crown:active { transform: translateY(-50%) translateX(-3px); }
+
+/* BEZEL RING */
+.bezel-ring {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--bezel-accent);
+    border: 2px solid var(--gold-dark);
+    padding: calc(var(--watch-size) * 0.035);
+    box-shadow: inset 0 0 12px rgba(0,0,0,0.9);
+}
+
+.screw {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold-primary);
+    box-shadow: inset 1px 1px 1px rgba(255,255,255,0.8), inset -1px -1px 1px rgba(0,0,0,0.8);
+    z-index: 4;
+}
+
+.screw::after {
+    content: '';
+    position: absolute;
+    top: 3px; left: 1px; right: 1px;
+    height: 1px;
+    background: #111;
+}
+
+.s1 { top: 3%; left: 50%; transform: translateX(-50%); }
+.s2 { top: 25%; right: 4%; }
+.s3 { bottom: 25%; right: 4%; }
+.s4 { bottom: 3%; left: 50%; transform: translateX(-50%); }
+.s5 { bottom: 25%; left: 4%; }
+.s6 { top: 25%; left: 4%; }
+
+/* DIAL FACE */
+.dial-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--dial-bg);
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.95);
+}
+
+.dial-background {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: repeating-conic-gradient(from 0deg, rgba(255, 255, 255, 0.02) 0deg 3deg, transparent 3deg 6deg);
+}
+
+/* HOUR MARKERS */
+.hour-markers {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.hour-markers .marker {
+    position: absolute;
+    inset: 0;
+    text-align: center;
+    color: var(--gold-primary);
+    font-family: 'Cinzel', serif;
+    font-weight: 800;
+    font-size: calc(var(--watch-size) * 0.05);
+    padding-top: calc(var(--watch-size) * 0.02);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+}
+
+.hour-markers .marker::before {
+    content: '';
+    position: absolute;
+    top: calc(var(--watch-size) * 0.075);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 8px;
+    background: linear-gradient(to bottom, var(--gold-light), var(--gold-dark));
+    border-radius: 1px;
+}
+
+.m12 { transform: rotate(0deg); }
+.m1  { transform: rotate(30deg); }
+.m2  { transform: rotate(60deg); }
+.m3  { transform: rotate(90deg); }
+.m4  { transform: rotate(120deg); }
+.m5  { transform: rotate(150deg); }
+.m6  { transform: rotate(180deg); }
+.m7  { transform: rotate(210deg); }
+.m8  { transform: rotate(240deg); }
+.m9  { transform: rotate(270deg); }
+.m10 { transform: rotate(300deg); }
+.m11 { transform: rotate(330deg); }
+
+.m12 span { display: inline-block; transform: rotate(0deg); }
+.m3 span  { display: inline-block; transform: rotate(-90deg); }
+.m6 span  { display: inline-block; transform: rotate(-180deg); }
+.m9 span  { display: inline-block; transform: rotate(-270deg); }
+
+/* BRANDING */
+.brand-area {
+    position: absolute;
+    top: 22%;
+    width: 100%;
+    text-align: center;
+    color: var(--gold-primary);
+    z-index: 3;
+}
+
+.brand-logo {
+    font-family: 'Cinzel', serif;
+    font-weight: 800;
+    font-size: calc(var(--watch-size) * 0.045);
+    letter-spacing: 3px;
+}
+
+.brand-sub {
+    font-size: calc(var(--watch-size) * 0.018);
+    letter-spacing: 1.5px;
+    color: var(--gold-light);
+    opacity: 0.75;
+}
+
+/* SUB-DIAL SECONDS */
+.subdial-seconds {
+    position: absolute;
+    left: 18%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: calc(var(--watch-size) * 0.18);
+    height: calc(var(--watch-size) * 0.18);
+    border-radius: 50%;
+    border: 1px solid rgba(223, 183, 108, 0.3);
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.subdial-label {
+    position: absolute;
+    top: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: calc(var(--watch-size) * 0.02);
+    color: var(--gold-primary);
+    font-weight: 700;
+}
+
+.subdial-hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    width: 2px;
+    height: 40%;
+    background: #ff3b30;
+    transform-origin: bottom center;
+}
+
+.subdial-cap {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold-primary);
+}
+
+/* DIGITAL OLE-LCD SCREEN */
+.digital-window {
+    position: absolute;
+    bottom: 16%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44%;
+    height: 16%;
+    background: var(--lcd-bg);
+    border: 1.5px solid var(--gold-dark);
+    border-radius: 6px;
+    padding: 3px 6px;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.9);
+    z-index: 3;
+    transition: box-shadow 0.3s ease;
+}
+
+.digital-window.backlight-active {
+    box-shadow: 0 0 14px var(--lcd-text), inset 0 0 8px var(--lcd-text);
+}
+
+.digital-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    color: var(--lcd-text);
+    font-family: 'Orbitron', monospace;
+    text-shadow: 0 0 4px var(--lcd-glow);
+}
+
+.lcd-header, .lcd-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: calc(var(--watch-size) * 0.022);
+    font-weight: 700;
+}
+
+.lcd-main {
+    font-size: calc(var(--watch-size) * 0.042);
+    font-weight: 900;
+    text-align: center;
+}
+
+/* HANDS ASSEMBLY */
+.hands-container {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom center;
+}
+
+.hour-hand {
+    width: 8px;
+    height: 28%;
+    margin-left: -4px;
+    background: linear-gradient(90deg, var(--gold-light) 50%, var(--gold-dark) 50%);
+    clip-path: polygon(30% 0%, 70% 0%, 100% 85%, 50% 100%, 0% 85%);
+}
+
+.hour-hand .lume {
+    position: absolute;
+    top: 10%; left: 50%;
+    transform: translateX(-50%);
+    width: 3px; height: 60%;
+    background: var(--lume-glow);
+    box-shadow: 0 0 4px var(--lume-glow);
+}
+
+.minute-hand {
+    width: 6px;
+    height: 40%;
+    margin-left: -3px;
+    background: linear-gradient(90deg, var(--gold-light) 50%, var(--gold-dark) 50%);
+    clip-path: polygon(30% 0%, 70% 0%, 100% 90%, 50% 100%, 0% 90%);
+}
+
+.minute-hand .lume {
+    position: absolute;
+    top: 10%; left: 50%;
+    transform: translateX(-50%);
+    width: 2.5px; height: 70%;
+    background: var(--lume-glow);
+    box-shadow: 0 0 4px var(--lume-glow);
+}
+
+.second-hand {
+    width: 2px;
+    height: 44%;
+    margin-left: -1px;
+    background: #ff3b30;
+}
+
+.second-counterweight {
+    position: absolute;
+    bottom: -15px; left: 50%;
+    transform: translateX(-50%);
+    width: 5px; height: 18px;
+    background: #ff3b30;
+}
+
+.center-cap {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--case-metal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center-jewel {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #d62828;
+}
+
+.glass-glare {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.03) 38%, transparent 40%);
+    pointer-events: none;
+    z-index: 15;
+}
+
+/* CONTROL PANEL */
+.control-panel {
+    margin-top: 50px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    z-index: 20;
+}
+
+.btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: all 0.2s ease;
+}
+
+.btn:active { transform: scale(0.95); }

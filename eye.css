@@ -1,0 +1,268 @@
+/* =========================================================
+   REALISTIC INTERACTIVE EYE STYLES
+========================================================= */
+
+:root {
+    --bg-color: #0d0f12;
+    --skin-base: #dca385;
+    --skin-shadow: #8f563f;
+    --skin-dark: #5c3222;
+    --sclera-bg: #f4eee8;
+    --iris-outer: #0f4c5c;
+    --iris-inner: #e3a008;
+    --pupil-color: #09090b;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-color);
+    font-family: system-ui, -apple-system, sans-serif;
+    overflow: hidden;
+}
+
+.stage {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* CREASE FOLD ABOVE EYE */
+.skin-fold {
+    position: absolute;
+    top: -22px;
+    width: 280px;
+    height: 40px;
+    border-radius: 50%;
+    border-top: 3px solid var(--skin-shadow);
+    opacity: 0.6;
+    filter: blur(1px);
+}
+
+/* EYE SOCKET */
+.eye-socket {
+    position: relative;
+    width: 290px;
+    height: 160px;
+    border-radius: 75% 15% 70% 15%;
+    transform: rotate(-3deg);
+    background: var(--skin-dark);
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 
+        0 0 30px rgba(0,0,0,0.8),
+        inset 0 0 15px var(--skin-shadow),
+        0 0 0 12px var(--skin-base);
+    transition: box-shadow 0.3s ease;
+}
+
+/* EYEBALL */
+.eyeball {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at 50% 50%, var(--sclera-bg) 60%, #e2d2c3 88%, #cbb19c 100%);
+}
+
+.sclera {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+/* BLOOD VESSELS & TEAR DUCT */
+.vessels {
+    position: absolute;
+    inset: 0;
+    background: 
+        radial-gradient(circle at 10% 50%, rgba(200, 50, 50, 0.25) 0%, transparent 40%),
+        radial-gradient(circle at 90% 50%, rgba(200, 50, 50, 0.2) 0%, transparent 35%);
+    pointer-events: none;
+}
+
+.tear-duct {
+    position: absolute;
+    left: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 18px;
+    background: radial-gradient(circle, #e08080 0%, #a84848 100%);
+    border-radius: 50%;
+    opacity: 0.85;
+}
+
+/* IRIS & PUPIL */
+.iris {
+    position: absolute;
+    top: calc(50% - 52px);
+    left: calc(50% - 52px);
+    width: 104px;
+    height: 104px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--iris-inner) 10%, var(--iris-outer) 70%, #051a21 100%);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+    transition: transform 0.08s ease-out;
+}
+
+.iris-texture {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: repeating-conic-gradient(
+        from 0deg,
+        rgba(255, 255, 255, 0.15) 0deg 4deg,
+        transparent 4deg 8deg
+    );
+    opacity: 0.7;
+}
+
+.limbal-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 3px solid rgba(5, 20, 25, 0.75);
+}
+
+.pupil {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--pupil-color);
+    box-shadow: 0 0 4px rgba(0,0,0,0.9);
+}
+
+/* REALISTIC REFLECTIONS (GLINT) */
+.reflection-primary {
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    width: 12px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 50%;
+    transform: rotate(-30deg);
+    filter: blur(0.3px);
+}
+
+.reflection-secondary {
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.45);
+    border-radius: 50%;
+}
+
+/* EYELIDS MECHANISM */
+.eyelid {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to bottom, var(--skin-base), var(--skin-shadow));
+    z-index: 5;
+    transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lid-upper {
+    top: 0;
+    height: 60%;
+    border-bottom: 2px solid var(--skin-dark);
+    transform: translateY(-100%);
+    box-shadow: inset 0 -4px 8px rgba(0,0,0,0.3);
+}
+
+.lid-lower {
+    bottom: 0;
+    height: 50%;
+    border-top: 2px solid var(--skin-dark);
+    transform: translateY(100%);
+    box-shadow: inset 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* CLOSED STATE */
+.eye-socket.is-closed .lid-upper {
+    transform: translateY(0%);
+}
+
+.eye-socket.is-closed .lid-lower {
+    transform: translateY(0%);
+}
+
+/* EYELASHES */
+.eyelashes {
+    position: absolute;
+    width: 100%;
+}
+
+.lashes-upper {
+    bottom: -6px;
+    height: 8px;
+    background: repeating-linear-gradient(
+        75deg,
+        transparent 0px,
+        transparent 4px,
+        #1a0d0a 4px,
+        #1a0d0a 6px
+    );
+}
+
+.lashes-lower {
+    top: -5px;
+    height: 6px;
+    background: repeating-linear-gradient(
+        105deg,
+        transparent 0px,
+        transparent 6px,
+        #1a0d0a 6px,
+        #1a0d0a 7px
+    );
+    opacity: 0.7;
+}
+
+/* SOCKET SHADOW */
+.socket-shadow {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 8px 12px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    z-index: 6;
+}
+
+/* INSTRUCTION BADGE */
+.badge {
+    margin-top: 40px;
+    display: flex;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 18px;
+    border-radius: 30px;
+    color: #a0aec0;
+    font-size: 0.85rem;
+    backdrop-filter: blur(8px);
+}
+
+.badge b {
+    color: #fff;
+}

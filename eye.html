@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realistic Interactive Eye</title>
+    <link rel="stylesheet" href="eye.css">
+</head>
+<body>
+
+    <div class="stage">
+        <!-- CREASE FOLD ABOVE EYE -->
+        <div class="skin-fold"></div>
+
+        <!-- MAIN EYE SOCKET CONTAINER -->
+        <div class="eye-socket" id="eyeSocket">
+            
+            <!-- EYEBALL & INTERNAL STRUCTURES -->
+            <div class="eyeball" id="eyeball">
+                <!-- SCLERA (WHITE OF THE EYE) -->
+                <div class="sclera">
+                    <div class="vessels"></div>
+                    <div class="tear-duct"></div>
+                    
+                    <!-- IRIS & PUPIL ASSEMBLY -->
+                    <div class="iris" id="iris">
+                        <div class="iris-texture"></div>
+                        <div class="limbal-ring"></div>
+                        <div class="pupil">
+                            <div class="reflection-primary"></div>
+                            <div class="reflection-secondary"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UPPER EYELID & LASHES -->
+            <div class="eyelid lid-upper">
+                <div class="eyelashes lashes-upper"></div>
+            </div>
+
+            <!-- LOWER EYELID & LASHES -->
+            <div class="eyelid lid-lower">
+                <div class="eyelashes lashes-lower"></div>
+            </div>
+
+            <!-- AMBIENT SHADOW OVERLAY -->
+            <div class="socket-shadow"></div>
+        </div>
+
+        <!-- INSTRUCTION BADGE -->
+        <div class="badge">
+            <span>👆 <b>Single Tap:</b> Open / Close</span>
+            <span>✌️ <b>Double Tap:</b> Blink</span>
+        </div>
+    </div>
+
+    <script src="eye.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Hybrid Watch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Orbitron:wght@600;900&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="clock.css">
+</head>
+<body>
+
+    <div class="watch-container">
+        
+        <!-- LEATHER STRAPS -->
+        <div class="strap strap-top"></div>
+        <div class="strap strap-bottom"></div>
+
+        <!-- WATCH CASE -->
+        <div class="watch-case" id="watchCase">
+            
+            <!-- PHYSICAL HARDWARE PUSHERS -->
+            <button class="pusher pusher-top" id="topPusher" title="Backlight"></button>
+            <button class="crown" id="mainCrown" title="Theme Switcher"></button>
+            <button class="pusher pusher-bottom" id="bottomPusher" title="Mode / Stopwatch"></button>
+
+            <!-- BEZEL RING -->
+            <div class="bezel-ring">
+                
+                <!-- BEZEL SCREWS -->
+                <div class="screw s1"></div>
+                <div class="screw s2"></div>
+                <div class="screw s3"></div>
+                <div class="screw s4"></div>
+                <div class="screw s5"></div>
+                <div class="screw s6"></div>
+
+                <!-- DIAL FACE (NESTED PROPERLY INSIDE BEZEL) -->
+                <div class="dial-face">
+                    
+                    <div class="dial-background"></div>
+
+                    <!-- ROMAN & BATON HOUR INDICES -->
+                    <div class="hour-markers">
+                        <div class="marker m12"><span>XII</span></div>
+                        <div class="marker m1"></div>
+                        <div class="marker m2"></div>
+                        <div class="marker m3"><span>III</span></div>
+                        <div class="marker m4"></div>
+                        <div class="marker m5"></div>
+                        <div class="marker m6"><span>VI</span></div>
+                        <div class="marker m7"></div>
+                        <div class="marker m8"></div>
+                        <div class="marker m9"><span>IX</span></div>
+                        <div class="marker m10"></div>
+                        <div class="marker m11"></div>
+                    </div>
+
+                    <!-- BRAND LOGO -->
+                    <div class="brand-area">
+                        <div class="brand-logo">AURA</div>
+                        <div class="brand-sub">CHRONOGRAPHE</div>
+                    </div>
+
+                    <!-- SUB-DIAL: ANALOG SECONDS SWEEP -->
+                    <div class="subdial subdial-seconds">
+                        <span class="subdial-label">60</span>
+                        <div class="subdial-hand" id="subdialSecondHand"></div>
+                        <div class="subdial-cap"></div>
+                    </div>
+
+                    <!-- OLE-LCD DIGITAL DISPLAY -->
+                    <div class="digital-window" id="digitalWindow">
+                        <div class="digital-screen">
+                            <div class="lcd-header">
+                                <span id="modeIndicator">TIME</span>
+                                <span id="formatIndicator">24H</span>
+                            </div>
+                            <div class="lcd-main" id="lcdMain">00:00:00</div>
+                            <div class="lcd-footer">
+                                <span id="lcdDay">MON</span>
+                                <span id="lcdDate">21 JUL 2026</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ANALOG HANDS ASSEMBLY -->
+                    <div class="hands-container">
+                        <div class="hand hour-hand" id="hourHand"><div class="lume"></div></div>
+                        <div class="hand minute-hand" id="minuteHand"><div class="lume"></div></div>
+                        <div class="hand second-hand" id="secondHand"><div class="second-counterweight"></div></div>
+                        <div class="center-cap"><div class="center-jewel"></div></div>
+                    </div>
+
+                    <!-- SAPPHIRE CRYSTAL REFLECTION -->
+                    <div class="glass-glare"></div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- QUICK CONTROL PANEL -->
+        <div class="control-panel">
+            <button class="btn" id="btnTheme">🎨 Theme</button>
+            <button class="btn" id="btnBacklight">💡 Backlight</button>
+            <button class="btn" id="btnMode">⏱️ Mode</button>
+            <button class="btn" id="btnFormat">🔄 12/24H</button>
+        </div>
+
+    </div>
+
+    <script src="clock.js"></script>
+</body>
+</html>

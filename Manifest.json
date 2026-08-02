@@ -1,0 +1,8 @@
+{
+  "name": "Shama SofaHub Kampala",
+  "short_name": "Shama SofaHub",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#c62828",
+  "icons": [{"src": "logo.jpg", "sizes": "192x192", "type": "image/jpg"}]
+}
